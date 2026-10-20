@@ -3,8 +3,8 @@
 
 const int invalid_argument = 1;
 const int invalid_data = 2;
-const max_rows = 10000;
-const max_cols = 10000;
+const int max_rows = 100;
+const int max_cols = 100;
 
 int main(int argc, char * argv[]) {
 
