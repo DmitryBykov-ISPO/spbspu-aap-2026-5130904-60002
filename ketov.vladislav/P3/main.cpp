@@ -130,6 +130,10 @@ int main(int argc, char *argv[])
       for (int j = 0; j < cols; j++) {
         if (!(file_in >> arr[i][j])) {
           std::cerr << "Not correct data\n";
+          for (int k = 0; k < rows; k++) {
+            delete[] arr[k];
+          }
+          delete[] arr;
           return invalid_data;
         }
       }
