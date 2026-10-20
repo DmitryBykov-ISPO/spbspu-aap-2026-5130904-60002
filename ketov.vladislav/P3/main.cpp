@@ -5,7 +5,7 @@ const int invalid_argument = 1;
 const int invalid_data = 2;
 
 int main(int argc, char * argv[]) {
-  
+
   if (argc != 4) {
     std::cerr << "Not enough arguments\n";
     return invalid_argument;
@@ -34,17 +34,17 @@ int main(int argc, char * argv[]) {
   if (!fileOut) {
     std::cerr << "Can not open file\n";
     return invalid_data;
-  }  
-  
+  }
+
   int rows = 0;
   int cols = 0;
-  
+
   if (std::stoi(argv[1]) == 1) {
     if (!(fileIn >> rows >> cols)) {
       std::cerr << "Not correct data\n";
       return invalid_data;
     }
-    
+
     int arr[rows][cols];
 
     for (int i = 0; i < rows; i++) {
@@ -53,7 +53,7 @@ int main(int argc, char * argv[]) {
           std::cerr << "Not correct data\n";
           return invalid_data;
         }
-      }  
+      }
     }
 
     int addValue = 1;
@@ -94,7 +94,7 @@ int main(int argc, char * argv[]) {
         fileOut << arr[i][j] << " ";
       }
     }
-  }    
+  }
 
 
 
@@ -105,7 +105,7 @@ int main(int argc, char * argv[]) {
       std::cerr << "Not correct data\n";
       return invalid_data;
     }
-   
+
     int ** arr = new int * [rows]{};
 
     try {
@@ -121,7 +121,7 @@ int main(int argc, char * argv[]) {
       std::cerr << "no memory";
       return invalid_argument;
     }
-    
+
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
         if (!(fileIn >> arr[i][j])) {
@@ -130,7 +130,7 @@ int main(int argc, char * argv[]) {
         }
       }
     }
-  
+
     int addValue = 1;
     int allCount = rows * cols;
     int top = 0;
@@ -162,21 +162,21 @@ int main(int argc, char * argv[]) {
       }
       left++;
     }
-      
+
     fileOut << rows << " " << cols << " ";
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
         fileOut << arr[i][j] << " ";
       }
-    } 
-    
+    }
+
     for (int i = 0; i < rows; i++) {
       delete[] arr[i];
     }
     delete[] arr;
   }
-  
+
   fileIn.close();
   fileOut.close();
-  return 0; 
-}   
+  return 0;
+}
