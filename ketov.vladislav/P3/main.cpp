@@ -55,8 +55,45 @@ int main(int argc, char * argv[]) {
         }
       }  
     }
+
     int addValue = 1;
     int allCount = rows * cols;
+    int top = 0;
+    int bottom = rows - 1;
+    int left = 0;
+    int right = cols - 1;
+    while (addValue <= allCount) {
+      for (int i = left; i <= right && addValue <= allCount; i++) {
+        arr[bottom][i] += addValue;
+        addValue++;
+      }
+      bottom--;
+
+      for (int i = bottom; i >= top && addValue <= allCount; i--) {
+        arr[i][right] += addValue;
+        addValue++;
+      }
+      right--;
+
+      for (int i = right; i >= left && addValue <= allCount; i--) {
+        arr[top][i] += addValue;
+        addValue++;
+      }
+      top++;
+
+      for (int i = top; i <= bottom && addValue <= allCount; i++) {
+        arr[i][left] += addValue;
+        addValue++;
+      }
+      left++;
+    }
+
+    fileOut << rows << " " << cols << " ";
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        fileOut << arr[i][j] << " ";
+      }
+    }
   }    
 
 
