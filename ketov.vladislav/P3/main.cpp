@@ -10,7 +10,6 @@ const int max_cols = 100;
 
 int main(int argc, char *argv[])
 {
-
   if (argc != 4) {
     std::cerr << "Not enough arguments\n";
     return invalid_argument;
@@ -67,7 +66,7 @@ int main(int argc, char *argv[])
     }
 
     int add_value = 1;
-    int all_count = rows * cols;
+    const int all_count = rows * cols;
     int top = 0;
     int bottom = rows - 1;
     int left = 0;
@@ -112,8 +111,7 @@ int main(int argc, char *argv[])
       return invalid_data;
     }
 
-    int **const arr = new int *[rows] {
-    };
+    int **const arr = new int *[rows]{};
 
     try {
       for (int i = 0; i < rows; i++) {
@@ -138,7 +136,7 @@ int main(int argc, char *argv[])
     }
 
     int add_value = 1;
-    int all_count = rows * cols;
+    const int all_count = rows * cols;
     int top = 0;
     int bottom = rows - 1;
     int left = 0;
