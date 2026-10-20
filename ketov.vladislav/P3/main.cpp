@@ -3,6 +3,8 @@
 
 const int invalid_argument = 1;
 const int invalid_data = 2;
+const max_rows = 10000;
+const max_cols = 10000;
 
 int main(int argc, char * argv[]) {
 
@@ -11,10 +13,10 @@ int main(int argc, char * argv[]) {
     return invalid_argument;
   }
 
-  std::string_view s = argv[1];
-  for (char c:s) {
-    if (c < '0' || c > '9') {
-      std::cerr << "First parametr is not a number\n";
+  const char * s = argv[1];
+  for (size_t i = 0; s[i] != '\0'; ++i) {
+    if (s[i] < '0' || s[i] > '9') {
+      std::cerr << "First parameter is not a number\n";
       return invalid_argument;
     }
   }
@@ -44,8 +46,13 @@ int main(int argc, char * argv[]) {
       std::cerr << "Not correct data\n";
       return invalid_data;
     }
+    
+    if (rows > max_rows || cols > max_cols) {
+      std::cerr << "Too large size";
+      return invalid_data;
+    }
 
-    int arr[rows][cols];
+    int arr[max_rows][max_cols] = {};
 
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
