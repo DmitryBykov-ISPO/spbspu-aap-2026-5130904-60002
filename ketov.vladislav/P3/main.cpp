@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
       return invalid_data;
     }
 
-    int **const arr = new int *[rows]{};
+    int **const arr = new int *[rows];
 
     try {
       for (int i = 0; i < rows; i++) {
