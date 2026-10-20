@@ -46,7 +46,7 @@ int main(int argc, char * argv[]) {
       std::cerr << "Not correct data\n";
       return invalid_data;
     }
-    
+
     if (rows > max_rows || cols > max_cols) {
       std::cerr << "Too large size";
       return invalid_data;
