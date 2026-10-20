@@ -9,40 +9,7 @@ namespace udovichenko
 {
   constexpr int MAX_MATRIX_ELEMENTS_COUNT = 10000;
 
-  void freeMatrix(int **&matrix, int rows)
-  {
-    if (!matrix)
-    {
-      return;
-    }
-    for (int i = 0; i < rows; ++i)
-    {
-      delete[] matrix[i];
-    }
-    delete[] matrix;
-    matrix = nullptr;
-  }
-
-  int **allocateMatrix(int rows, int cols)
-  {
-    int **matrix = new int *[rows]{};
-    try
-    {
-      for (int i = 0; i < rows; ++i)
-      {
-        matrix[i] = new int[cols]{};
-      }
-    }
-    catch (const std::bad_alloc &)
-    {
-      freeMatrix(matrix, rows);
-      throw;
-    }
-
-    return matrix;
-  }
-
-  bool readInputFileToMatrix(std::ifstream &input_file, int matrix[MAX_MATRIX_ELEMENTS_COUNT], int rows, int cols)
+  bool readInputFileToMatrix(std::ifstream &input_file, int *matrix, int rows, int cols)
   {
     for (int i = 0; i < rows; ++i)
     {
@@ -57,22 +24,7 @@ namespace udovichenko
     return true;
   }
 
-  bool readInputFileToMatrix(std::ifstream &input_file, int **matrix, int rows, int cols)
-  {
-    for (int i = 0; i < rows; ++i)
-    {
-      for (int j = 0; j < cols; ++j)
-      {
-        if (!(input_file >> matrix[i][j]))
-        {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
-
-  long long findMinSumSecondaryDiagonal(const int matrix[MAX_MATRIX_ELEMENTS_COUNT], int rows, int cols)
+  long long findMinSumSecondaryDiagonal(const int *matrix, int rows, int cols)
   {
     if (rows == 0 || cols == 0 || (rows == 1 && cols == 1))
     {
@@ -94,34 +46,6 @@ namespace udovichenko
       for (int i = row, j = cols - 1; i < rows && j >= 0; i++, j--)
       {
         current_sum += matrix[i * cols + j];
-      }
-      min_sum = std::min(min_sum, current_sum);
-    }
-    return min_sum;
-  }
-
-  long long findMinSumSecondaryDiagonal(const int *const *matrix, int rows, int cols)
-  {
-    if (rows == 0 || cols == 0 || (rows == 1 && cols == 1))
-    {
-      return 0;
-    }
-    long long min_sum = std::numeric_limits< long long >::max();
-    for (int col = 0; col < cols - 1; col++)
-    {
-      long long current_sum = 0;
-      for (int i = 0, j = col; i < rows && j >= 0; i++, j--)
-      {
-        current_sum += matrix[i][j];
-      }
-      min_sum = std::min(min_sum, current_sum);
-    }
-    for (int row = 1; row < rows; row++)
-    {
-      long long current_sum = 0;
-      for (int i = row, j = cols - 1; i < rows && j >= 0; i++, j--)
-      {
-        current_sum += matrix[i][j];
       }
       min_sum = std::min(min_sum, current_sum);
     }
@@ -177,10 +101,10 @@ int main(int argc, const char *argv[])
   }
   else if (std::strcmp(num, "2") == 0)
   {
-    int **matrix = nullptr;
+    int *matrix = nullptr;
     try
     {
-      matrix = udovichenko::allocateMatrix(rows, cols);
+      matrix = new int[rows * cols]{};
     }
     catch (const std::bad_alloc &)
     {
@@ -192,7 +116,7 @@ int main(int argc, const char *argv[])
     {
       result = udovichenko::findMinSumSecondaryDiagonal(matrix, rows, cols);
     }
-    udovichenko::freeMatrix(matrix, rows);
+    delete[] matrix;
   }
   else
   {
