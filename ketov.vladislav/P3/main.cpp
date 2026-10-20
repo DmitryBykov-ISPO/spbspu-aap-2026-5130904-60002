@@ -1,19 +1,22 @@
-#include <iostream>
+#include <cstddef>
 #include <fstream>
+#include <iostream>
+#include <string>
 
 const int invalid_argument = 1;
 const int invalid_data = 2;
 const int max_rows = 100;
 const int max_cols = 100;
 
-int main(int argc, char * argv[]) {
+int main(int argc, char *argv[])
+{
 
   if (argc != 4) {
     std::cerr << "Not enough arguments\n";
     return invalid_argument;
   }
 
-  const char * s = argv[1];
+  const char *const s = argv[1];
   for (size_t i = 0; s[i] != '\0'; ++i) {
     if (s[i] < '0' || s[i] > '9') {
       std::cerr << "First parameter is not a number\n";
@@ -26,14 +29,14 @@ int main(int argc, char * argv[]) {
     return invalid_argument;
   }
 
-  std::ifstream fileIn(argv[2]);
-  if (!fileIn) {
+  std::ifstream file_in(argv[2]);
+  if (!file_in) {
     std::cerr << "Can not open file\n";
     return invalid_data;
   }
 
-  std::ofstream fileOut(argv[3]);
-  if (!fileOut) {
+  std::ofstream file_out(argv[3]);
+  if (!file_out) {
     std::cerr << "Can not open file\n";
     return invalid_data;
   }
@@ -42,7 +45,7 @@ int main(int argc, char * argv[]) {
   int cols = 0;
 
   if (std::stoi(argv[1]) == 1) {
-    if (!(fileIn >> rows >> cols)) {
+    if (!(file_in >> rows >> cols)) {
       std::cerr << "Not correct data\n";
       return invalid_data;
     }
@@ -56,71 +59,67 @@ int main(int argc, char * argv[]) {
 
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
-        if (!(fileIn >> arr[i][j])) {
+        if (!(file_in >> arr[i][j])) {
           std::cerr << "Not correct data\n";
           return invalid_data;
         }
       }
     }
 
-    int addValue = 1;
-    int allCount = rows * cols;
+    int add_value = 1;
+    int all_count = rows * cols;
     int top = 0;
     int bottom = rows - 1;
     int left = 0;
     int right = cols - 1;
-    while (addValue <= allCount) {
-      for (int i = left; i <= right && addValue <= allCount; i++) {
-        arr[bottom][i] += addValue;
-        addValue++;
+    while (add_value <= all_count) {
+      for (int i = left; i <= right && add_value <= all_count; i++) {
+        arr[bottom][i] += add_value;
+        add_value++;
       }
       bottom--;
 
-      for (int i = bottom; i >= top && addValue <= allCount; i--) {
-        arr[i][right] += addValue;
-        addValue++;
+      for (int i = bottom; i >= top && add_value <= all_count; i--) {
+        arr[i][right] += add_value;
+        add_value++;
       }
       right--;
 
-      for (int i = right; i >= left && addValue <= allCount; i--) {
-        arr[top][i] += addValue;
-        addValue++;
+      for (int i = right; i >= left && add_value <= all_count; i--) {
+        arr[top][i] += add_value;
+        add_value++;
       }
       top++;
 
-      for (int i = top; i <= bottom && addValue <= allCount; i++) {
-        arr[i][left] += addValue;
-        addValue++;
+      for (int i = top; i <= bottom && add_value <= all_count; i++) {
+        arr[i][left] += add_value;
+        add_value++;
       }
       left++;
     }
 
-    fileOut << rows << " " << cols << " ";
+    file_out << rows << " " << cols << " ";
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
-        fileOut << arr[i][j] << " ";
+        file_out << arr[i][j] << " ";
       }
     }
   }
 
-
-
-
-
   if (std::stoi(argv[1]) == 2) {
-    if (!(fileIn >> rows >> cols)) {
+    if (!(file_in >> rows >> cols)) {
       std::cerr << "Not correct data\n";
       return invalid_data;
     }
 
-    int ** arr = new int * [rows]{};
+    int **const arr = new int *[rows] {
+    };
 
     try {
       for (int i = 0; i < rows; i++) {
-        arr[i] = new int [cols]{};
+        arr[i] = new int[cols]{};
       }
-    }
-    catch (...) {
+    } catch (...) {
       for (int i = 0; i < rows; i++) {
         delete[] arr[i];
       }
@@ -131,49 +130,49 @@ int main(int argc, char * argv[]) {
 
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
-        if (!(fileIn >> arr[i][j])) {
+        if (!(file_in >> arr[i][j])) {
           std::cerr << "Not correct data\n";
           return invalid_data;
         }
       }
     }
 
-    int addValue = 1;
-    int allCount = rows * cols;
+    int add_value = 1;
+    int all_count = rows * cols;
     int top = 0;
     int bottom = rows - 1;
     int left = 0;
     int right = cols - 1;
-    while (addValue <= allCount) {
-      for (int i = left; i <= right && addValue <= allCount; i++) {
-        arr[bottom][i] += addValue;
-        addValue++;
+    while (add_value <= all_count) {
+      for (int i = left; i <= right && add_value <= all_count; i++) {
+        arr[bottom][i] += add_value;
+        add_value++;
       }
       bottom--;
 
-      for (int i = bottom; i >= top && addValue <= allCount; i--) {
-        arr[i][right] += addValue;
-        addValue++;
+      for (int i = bottom; i >= top && add_value <= all_count; i--) {
+        arr[i][right] += add_value;
+        add_value++;
       }
       right--;
 
-      for (int i = right; i >= left && addValue <= allCount; i--) {
-        arr[top][i] += addValue;
-        addValue++;
+      for (int i = right; i >= left && add_value <= all_count; i--) {
+        arr[top][i] += add_value;
+        add_value++;
       }
       top++;
 
-      for (int i = top; i <= bottom && addValue <= allCount; i++) {
-        arr[i][left] += addValue;
-        addValue++;
+      for (int i = top; i <= bottom && add_value <= all_count; i++) {
+        arr[i][left] += add_value;
+        add_value++;
       }
       left++;
     }
 
-    fileOut << rows << " " << cols << " ";
+    file_out << rows << " " << cols << " ";
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
-        fileOut << arr[i][j] << " ";
+        file_out << arr[i][j] << " ";
       }
     }
 
@@ -183,7 +182,7 @@ int main(int argc, char * argv[]) {
     delete[] arr;
   }
 
-  fileIn.close();
-  fileOut.close();
+  file_in.close();
+  file_out.close();
   return 0;
 }
