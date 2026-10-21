@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <string>
 
 const int invalid_argument = 1;
 const int invalid_data = 2;
@@ -39,7 +40,8 @@ int main(int argc, char* argv[])
     return invalid_data;
   }
 
-  int rows, cols;
+  int rows = 0;
+  int cols = 0;
 
   if (!(input >> rows >> cols)) {
     std::cerr << "Not correct data\n";
@@ -103,7 +105,7 @@ int main(int argc, char* argv[])
   if (number == 2) {
 
     int alloc_count = 0;
-    int** arr = new int*[rows]();
+    int** const arr = new int*[rows]();
 
     try {
       for (int i = 0; i < rows; i++) {
