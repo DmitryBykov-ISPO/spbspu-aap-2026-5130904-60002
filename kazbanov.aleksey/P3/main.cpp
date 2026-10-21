@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
     return invalid_data;
   }
 
-  if (number == 1) {
+  if (std::stoi(argv[1]) == 1) {
 
     int arr[max_size][max_size]{};
 
@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
     }
   }
 
-  if (number == 2) {
+  if (std::stoi(argv[1]) == 2) {
 
     int alloc_count = 0;
     int** const arr = new int*[rows]();
