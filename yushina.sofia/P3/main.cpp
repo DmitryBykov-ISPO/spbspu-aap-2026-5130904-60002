@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
   int cols = 0;
 
   int* dynamic_matrix = nullptr;
-  int static_matrix[max_size = {}];
+  int static_matrix[max_size] = {};
   int* matrix = nullptr;
 
   std::ifstream file(input_file);
