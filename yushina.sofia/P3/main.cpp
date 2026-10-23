@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
     return 2;
   }
 
-  int total = rows * cols;
+  const int total = rows * cols;
 
   if (var == 1) {
     matrix = static_matrix;
