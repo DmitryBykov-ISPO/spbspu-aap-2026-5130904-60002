@@ -26,7 +26,7 @@ namespace utils {
     return matrix;
   }
 
-  void free_matrix(int** matrix, int r, int c)
+  void free_matrix(int** matrix, int r)
   {
     if (matrix == nullptr) {
       return;

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UTILS_H
+#define UTILS_H
 
 namespace utils {
   int min(int a, int b);
@@ -7,3 +8,5 @@ namespace utils {
   int min_diag_sum(int* matrix, int r, int c);
   int min_diag_sum(int** matrix, int r, int c);
 }
+
+#endif
