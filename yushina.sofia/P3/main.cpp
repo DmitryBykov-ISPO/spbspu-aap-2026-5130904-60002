@@ -14,7 +14,7 @@ int localMin(const int* matrix, int rows, int cols)
 
   for (int i = 1; i < rows - 1; ++i) {
     for (int j = 1; j < cols - 1; ++j) {
-      int center = matrix[i * cols + j];
+      const int center = matrix[i * cols + j];
 
       if (matrix[(i - 1) * cols + (j - 1)] > center && matrix[(i - 1) * cols + j] > center
           && matrix[(i - 1) * cols + (j + 1)] > center && matrix[i * cols + (j - 1)] > center
@@ -35,9 +35,9 @@ int main(int argc, char* argv[])
     return 1;
   }
 
-  std::string num = argv[1];
-  std::string inputFile = argv[2];
-  std::string outputFile = argv[3];
+  const std::string num = argv[1];
+  const std::string input_file = argv[2];
+  const std::string output_file = argv[3];
 
   int var = 0;
 
@@ -53,11 +53,11 @@ int main(int argc, char* argv[])
   int rows = 0;
   int cols = 0;
 
-  int* dynamicMatrix = nullptr;
-  int staticMatrix[max_size];
+  int* dynamic_matrix = nullptr;
+  int static_matrix[max_size = {}];
   int* matrix = nullptr;
 
-  std::ifstream file(inputFile);
+  std::ifstream file(input_file);
 
   if (!file.is_open()) {
     std::cerr << "Error\n";
@@ -82,10 +82,10 @@ int main(int argc, char* argv[])
   int total = rows * cols;
 
   if (var == 1) {
-    matrix = staticMatrix;
+    matrix = static_matrix;
   } else if (var == 2) {
-    dynamicMatrix = new int[rows * cols];
-    matrix = dynamicMatrix;
+    dynamic_matrix = new int[rows * cols];
+    matrix = dynamic_matrix;
   }
 
   for (int i = 0; i < total; ++i) {
@@ -93,7 +93,7 @@ int main(int argc, char* argv[])
       std::cerr << "Error\n";
 
       if (var == 2) {
-        delete[] dynamicMatrix;
+        delete[] dynamic_matrix;
       }
 
       return 2;
@@ -104,34 +104,34 @@ int main(int argc, char* argv[])
 
   int result = localMin(matrix, rows, cols);
 
-  std::ofstream outFile(outputFile);
+  std::ofstream out_file(output_file);
 
-  if (!outFile.is_open()) {
+  if (!out_file.is_open()) {
     std::cerr << "Error\n";
 
     if (var == 2) {
-      delete[] dynamicMatrix;
+      delete[] dynamic_matrix;
     }
 
     return 2;
   }
 
-  outFile << result << '\n';
+  out_file << result << '\n';
 
-  if (!outFile) {
+  if (!out_file) {
     std::cerr << "Error\n";
 
     if (var == 2) {
-      delete[] dynamicMatrix;
+      delete[] dynamic_matrix;
     }
 
     return 2;
   }
 
-  outFile.close();
+  out_file.close();
 
   if (var == 2) {
-    delete[] dynamicMatrix;
+    delete[] dynamic_matrix;
   }
 
   return 0;
