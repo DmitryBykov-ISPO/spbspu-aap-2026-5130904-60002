@@ -24,7 +24,10 @@ int main(int argc, char* argv[])
 
   int r = 0;
   int c = 0;
-  input >> r >> c;
+  if (!(input >> r >> c)) {
+    std::cerr << "Input file is empty\n";
+    return 2;
+  }
 
   int temp = 0;
   int res = 0;
@@ -42,23 +45,23 @@ int main(int argc, char* argv[])
       }
     }
 
-    res = utils::min_diag_sum(matrix, r, c);
+    res = utils::minDiagSum(matrix, r, c);
   }
   else {
-    int ** matrix = utils::allocate_matrix(r, c);
+    int ** matrix = utils::allocateMatrix(r, c);
     for (int i = 0; i < r; i++) {
       for (int j = 0; j < c; j++) {
         if (!(input >> temp)) {
           std::cerr << "Invalid matrix\n";
-          utils::free_matrix(matrix, r);
+          utils::freeMatrix(matrix, r);
           return 2;
         }
         matrix[i][j] = temp;
       }
     }
 
-    res = utils::min_diag_sum(matrix, r, c);
-    utils::free_matrix(matrix, r);
+    res = utils::minDiagSum(matrix, r, c);
+    utils::freeMatrix(matrix, r);
   }
   input.close();
 
