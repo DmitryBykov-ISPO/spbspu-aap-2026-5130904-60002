@@ -37,7 +37,7 @@ namespace utils {
     delete[] matrix;
   }
 
-    int min_diag_sum(int* matrix, int r, int c)
+  int min_diag_sum(int* matrix, int r, int c)
   {
     int min_sum = std::numeric_limits<int>::max();
     int max_par = max(c, r);
