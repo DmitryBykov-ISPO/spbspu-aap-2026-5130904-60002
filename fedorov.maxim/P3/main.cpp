@@ -1,12 +1,11 @@
 ﻿#include <iostream>
 #include <string>
 #include <fstream>
-#include <limits>
 #include "utils.h"
 
 int main(int argc, char* argv[])
 {
-  if (argc != 4 || (!std::strcmp(argv[1], "1") && !std::strcmp(argv[1], "2"))) {
+  if (argc != 4 || (std::strcmp(argv[1], "1") && std::strcmp(argv[1], "2"))) {
     std::cerr << "Invalid args\n";
     return 1;
   }
@@ -72,7 +71,7 @@ int main(int argc, char* argv[])
     return 2;
   }
 
-  output << res << "\n";
+  output << res;
 
   output.close();
 
