@@ -25,10 +25,6 @@ int main(int argc, char* argv[])
   int r = 0;
   int c = 0;
   input >> r >> c;
-  if (r<=0 || c<=0) {
-    std::cerr << "Invalid args\n";
-    return 1;
-  }
 
   int temp = 0;
   int res = 0;
@@ -54,6 +50,7 @@ int main(int argc, char* argv[])
       for (int j = 0; j < c; j++) {
         if (!(input >> temp)) {
           std::cerr << "Invalid matrix\n";
+          utils::free_matrix(matrix, r);
           return 2;
         }
         matrix[i][j] = temp;
