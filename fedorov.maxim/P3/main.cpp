@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
     }
 
     res = utils::min_diag_sum(matrix, r, c);
-    utils::free_matrix(matrix, r, c);
+    utils::free_matrix(matrix, r);
   }
   input.close();
 
