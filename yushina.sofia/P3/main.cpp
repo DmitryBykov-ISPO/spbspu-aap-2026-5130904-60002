@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
 
   file.close();
 
-  int result = localMin(matrix, rows, cols);
+  const int result = localMin(matrix, rows, cols);
 
   std::ofstream out_file(output_file);
 
