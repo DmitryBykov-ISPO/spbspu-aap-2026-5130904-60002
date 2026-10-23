@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
     std::cerr << "Input file cannot open\n";
     return 2;
   }
-  
+
   int r = 0;
   int c = 0;
   input >> r >> c;
