@@ -2,35 +2,39 @@
 #include <fstream>
 #include <string>
 
-int** allocateMatrix(int rows, int cols) {
+int **allocateMatrix(int rows, int cols)
+{
 	if ((rows <= 0) || (cols <= 0)) {
 		throw std::invalid_argument("matrix size <= 0");
 	}
-	int** matrix = new int* [rows] {};
+	int **matrix = new int *[rows] { };
 
 	try {
 		for (int i = 0; i < rows; ++i) {
-			matrix[i] = new int[cols] {};
+			matrix[i] = new int[cols] {
+			};
 		}
 	}
-	catch (...) {
+	catch( ...) {
 		for (int i = 0; i < rows; i++) {
-			delete[] matrix[i];
+			delete[]matrix[i];
 		}
-		delete[] matrix;
+		delete[]matrix;
 		throw;
 	}
 	return matrix;
 }
 
-void freeMatrix(int** m, int rows) {
+void freeMatrix(int **m, int rows)
+{
 	for (int i = 0; i < rows; i++) {
-		delete[] m[i];
+		delete[]m[i];
 	}
-	delete[] m;
+	delete[]m;
 }
 
-int sdlMatrix(int** matrix, int rows, int cols) {
+int sdlMatrix(int **matrix, int rows, int cols)
+{
 	int count = 0;
 	for (int i = 0; i < rows; ++i) {
 		int min_row = matrix[i][0];
@@ -57,7 +61,8 @@ int sdlMatrix(int** matrix, int rows, int cols) {
 	return count;
 }
 
-int sdlMatrix1(int (*matrix)[100], int rows, int cols) {
+int sdlMatrix1(int (*matrix)[100], int rows, int cols)
+{
 	int count = 0;
 	for (int i = 0; i < rows; ++i) {
 		int min_row = matrix[i][0];
@@ -84,7 +89,8 @@ int sdlMatrix1(int (*matrix)[100], int rows, int cols) {
 	return count;
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
 	if (argc < 4) {
 		std::cerr << "Not enough arguments\n";
 		return 1;
@@ -102,7 +108,7 @@ int main(int argc, char* argv[]) {
 		std::cerr << "First parameter is out of range\n";
 		return 1;
 	}
-	const char* const arr = argv[2];
+	const char *const arr = argv[2];
 
 	std::ifstream input(argv[2]);
 	if (!input) {
@@ -128,7 +134,7 @@ int main(int argc, char* argv[]) {
 	const int size = 100;
 
 	if (num == 1) {
-		int arr[size][size] = {};
+		int arr[size][size] = { };
 		if (rows > size || cols > size) {
 			std::cerr << "ERROR: too large matrix";
 			return 2;
@@ -137,7 +143,8 @@ int main(int argc, char* argv[]) {
 		for (int i = 0; i < rows; ++i) {
 			for (int j = 0; j < cols; ++j) {
 				if (!(input >> x)) {
-					std::cerr << "ERROR: invalid_argument\n";
+					std::
+					    cerr << "ERROR: invalid_argument\n";
 					return 2;
 				}
 				arr[i][j] = x;
@@ -146,12 +153,13 @@ int main(int argc, char* argv[]) {
 		result = sdlMatrix1(arr, rows, cols);
 	}
 	if (num == 2) {
-		int** arr = allocateMatrix(rows, cols);
+		int **arr = allocateMatrix(rows, cols);
 		int x;
 		for (int i = 0; i < rows; ++i) {
 			for (int j = 0; j < cols; ++j) {
 				if (!(input >> x)) {
-					std::cerr << "ERROR: invalid_argument\n";
+					std::
+					    cerr << "ERROR: invalid_argument\n";
 					freeMatrix(arr, rows);
 					return 2;
 				}
