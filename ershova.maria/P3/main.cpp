@@ -1,12 +1,14 @@
 #include <fstream>
 #include <iostream>
+#include <stdexcept>
 #include <string>
+const int size = 100;
 
 int **allocateMatrix(int rows, int cols) {
   if ((rows <= 0) || (cols <= 0)) {
     throw std::invalid_argument("matrix size <= 0");
   }
-  int **matrix = new int *[rows] {};
+  int **const matrix = new int *[rows] {};
 
   try {
     for (int i = 0; i < rows; ++i) {
@@ -56,7 +58,7 @@ int sdlMatrix(int **matrix, int rows, int cols) {
   return count;
 }
 
-int sdlMatrix1(int (*matrix)[100], int rows, int cols) {
+int sdlMatrix1(int (*matrix)[size], int rows, int cols) {
   int count = 0;
   for (int i = 0; i < rows; ++i) {
     int min_row = matrix[i][0];
@@ -122,15 +124,14 @@ int main(int argc, char *argv[]) {
     std::ofstream output(argv[3]);
     output << 0;
     return 0;
-  }
-  else if (rows < 0 || cols < 0) {
+  } else if (rows < 0 || cols < 0) {
     std::cerr << "ERROR: wrong size\n";
     return 2;
   }
 
   if (num == 1) {
-    int arr[100][100] = {};
-    if (rows > 100 || cols > 100) {
+    int arr[size][size] = {};
+    if (rows > size || cols > size) {
       std::cerr << "ERROR: too large matrix";
       return 2;
     }
@@ -147,7 +148,7 @@ int main(int argc, char *argv[]) {
     result = sdlMatrix1(arr, rows, cols);
   }
   if (num == 2) {
-    int ** const arr = allocateMatrix(rows, cols);
+    int **const arr = allocateMatrix(rows, cols);
     int x = 0;
     for (int i = 0; i < rows; ++i) {
       for (int j = 0; j < cols; ++j) {
