@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 
     res = utils::minDiagSum(matrix, r, c);
   } else {
-    int **const matrix = utils::allocateMatrix(r, c);
+    int *const *const matrix = utils::allocateMatrix(r, c);
     for (int i = 0; i < r; i++) {
       for (int j = 0; j < c; j++) {
         if (!(input >> temp)) {
