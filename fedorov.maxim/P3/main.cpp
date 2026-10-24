@@ -1,19 +1,18 @@
-﻿#include <iostream>
-#include <string>
+﻿#include "utils.hpp"
 #include <cstring>
 #include <fstream>
-#include "utils.h"
+#include <iostream>
+#include <string>
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char *argv[]) {
   if (argc != 4 || (std::strcmp(argv[1], "1") && std::strcmp(argv[1], "2"))) {
     std::cerr << "Invalid args\n";
     return 1;
   }
 
   int mode = std::stoi(argv[1]);
-  char* input_path = argv[2];
-  char* output_path = argv[3];
+  char *input_path = argv[2];
+  char *output_path = argv[3];
 
   std::ifstream input(input_path);
 
@@ -32,7 +31,6 @@ int main(int argc, char* argv[])
   int temp = 0;
   int res = 0;
 
-
   if (mode == 1) {
     int matrix[10000];
     for (int i = 0; i < r; i++) {
@@ -46,9 +44,8 @@ int main(int argc, char* argv[])
     }
 
     res = utils::minDiagSum(matrix, r, c);
-  }
-  else {
-    int ** matrix = utils::allocateMatrix(r, c);
+  } else {
+    int **matrix = utils::allocateMatrix(r, c);
     for (int i = 0; i < r; i++) {
       for (int j = 0; j < c; j++) {
         if (!(input >> temp)) {
