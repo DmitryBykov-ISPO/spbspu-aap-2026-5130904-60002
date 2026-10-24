@@ -56,7 +56,7 @@ int sdlMatrix(int **matrix, int rows, int cols) {
   return count;
 }
 
-int sdlMatrix1(int (*matrix)[size], int rows, int cols) {
+int sdlMatrix1(int (*matrix)[100], int rows, int cols) {
   int count = 0;
   for (int i = 0; i < rows; ++i) {
     int min_row = matrix[i][0];
@@ -128,11 +128,9 @@ int main(int argc, char *argv[]) {
     return 2;
   }
 
-  const int size = 100;
-
   if (num == 1) {
-    int arr[size][size] = {};
-    if (rows > size || cols > size) {
+    int arr[100][100] = {};
+    if (rows > 100 || cols > 100) {
       std::cerr << "ERROR: too large matrix";
       return 2;
     }
