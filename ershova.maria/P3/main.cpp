@@ -10,7 +10,6 @@ int **allocateMatrix(int rows, int cols)
     throw std::invalid_argument("matrix size <= 0");
   }
   int **const matrix = new int *[rows]{};
-
   try {
     for (int i = 0; i < rows; ++i) {
       matrix[i] = new int[cols]{};
