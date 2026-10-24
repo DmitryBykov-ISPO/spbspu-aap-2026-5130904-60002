@@ -19,14 +19,14 @@ namespace utils {
 
   int **allocateMatrix(int r, int c)
   {
-    int **matrix = new int *[r]();
+    int **const matrix = new int *[r]();
     for (int i = 0; i < r; i++) {
       matrix[i] = new int[c];
     }
     return matrix;
   }
 
-  void freeMatrix(int * const*matrix, int r)
+  void freeMatrix(int *const *const matrix, int r)
   {
     if (matrix == nullptr) {
       return;
@@ -37,7 +37,7 @@ namespace utils {
     delete[] matrix;
   }
 
-  int minDiagSum(int  const*matrix, int r, int c)
+  int minDiagSum(int const *const matrix, int r, int c)
   {
     int min_sum = std::numeric_limits< int >::max();
     int const max_par = max(c, r);
@@ -76,7 +76,7 @@ namespace utils {
     return min_sum;
   }
 
-  int minDiagSum(int * const*matrix, int r, int c)
+  int minDiagSum(int *const *const matrix, int r, int c)
   {
     int min_sum = std::numeric_limits< int >::max();
     int const max_par = max(c, r);

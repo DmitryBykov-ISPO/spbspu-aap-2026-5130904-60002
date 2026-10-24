@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
   }
 
   int const mode = std::stoi(argv[1]);
-  char  const*input_path = argv[2];
-  char  const*output_path = argv[3];
+  char const *const input_path = argv[2];
+  char const *const output_path = argv[3];
 
   std::ifstream input(input_path);
 
@@ -33,7 +33,8 @@ int main(int argc, char *argv[])
   int res = 0;
 
   if (mode == 1) {
-    int matrix[10000];
+    const int size = 10000;
+    int matrix[size];
     for (int i = 0; i < r; i++) {
       for (int j = 0; j < c; j++) {
         if (!(input >> temp)) {
@@ -46,7 +47,7 @@ int main(int argc, char *argv[])
 
     res = utils::minDiagSum(matrix, r, c);
   } else {
-    int **matrix = utils::allocateMatrix(r, c);
+    int **const matrix = utils::allocateMatrix(r, c);
     for (int i = 0; i < r; i++) {
       for (int j = 0; j < c; j++) {
         if (!(input >> temp)) {
