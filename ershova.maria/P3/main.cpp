@@ -101,7 +101,6 @@ int main(int argc, char *argv[]) {
     std::cerr << "First parameter is out of range\n";
     return 1;
   }
-  const char *const arr = argv[2];
 
   std::ifstream input(argv[2]);
   if (!input) {
