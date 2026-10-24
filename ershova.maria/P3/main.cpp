@@ -2,7 +2,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
-const int size = 100;
+const int MAX_SIZE = 100;
 
 int **allocateMatrix(int rows, int cols) {
   if ((rows <= 0) || (cols <= 0)) {
@@ -58,7 +58,7 @@ int sdlMatrix(int **matrix, int rows, int cols) {
   return count;
 }
 
-int sdlMatrix1(int (*matrix)[size], int rows, int cols) {
+int sdlMatrix1(int (*matrix)[MAX_SIZE], int rows, int cols) {
   int count = 0;
   for (int i = 0; i < rows; ++i) {
     int min_row = matrix[i][0];
@@ -130,8 +130,8 @@ int main(int argc, char *argv[]) {
   }
 
   if (num == 1) {
-    int arr[size][size] = {};
-    if (rows > size || cols > size) {
+    int arr[MAX_SIZE][MAX_SIZE] = {};
+    if (rows > MAX_SIZE || cols > MAX_SIZE) {
       std::cerr << "ERROR: too large matrix";
       return 2;
     }
