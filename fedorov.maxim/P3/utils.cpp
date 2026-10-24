@@ -26,7 +26,7 @@ namespace utils {
     return matrix;
   }
 
-  void freeMatrix(int **matrix, int r)
+  void freeMatrix(int * const*matrix, int r)
   {
     if (matrix == nullptr) {
       return;
@@ -37,10 +37,10 @@ namespace utils {
     delete[] matrix;
   }
 
-  int minDiagSum(int *matrix, int r, int c)
+  int minDiagSum(int  const*matrix, int r, int c)
   {
     int min_sum = std::numeric_limits< int >::max();
-    int max_par = max(c, r);
+    int const max_par = max(c, r);
     bool is_plused = false;
     int sum = 0;
 
@@ -76,10 +76,10 @@ namespace utils {
     return min_sum;
   }
 
-  int minDiagSum(int **matrix, int r, int c)
+  int minDiagSum(int * const*matrix, int r, int c)
   {
     int min_sum = std::numeric_limits< int >::max();
-    int max_par = max(c, r);
+    int const max_par = max(c, r);
     bool is_plused = false;
     int sum = 0;
 

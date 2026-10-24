@@ -11,9 +11,9 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  int mode = std::stoi(argv[1]);
-  char *input_path = argv[2];
-  char *output_path = argv[3];
+  int const mode = std::stoi(argv[1]);
+  char  const*input_path = argv[2];
+  char  const*output_path = argv[3];
 
   std::ifstream input(input_path);
 
