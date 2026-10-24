@@ -4,7 +4,8 @@
 #include <string>
 const int MAX_SIZE = 100;
 
-int **allocateMatrix(int rows, int cols){
+int **allocateMatrix(int rows, int cols)
+{
   if ((rows <= 0) || (cols <= 0)) {
     throw std::invalid_argument("matrix size <= 0");
   }
@@ -24,14 +25,16 @@ int **allocateMatrix(int rows, int cols){
   return matrix;
 }
 
-void freeMatrix(int **m, int rows){
+void freeMatrix(int **m, int rows)
+{
   for (int i = 0; i < rows; i++) {
     delete[] m[i];
   }
   delete[] m;
 }
 
-int sdlMatrix(int **matrix, int rows, int cols){
+int sdlMatrix(int **matrix, int rows, int cols)
+{
   int count = 0;
   for (int i = 0; i < rows; ++i) {
     int min_row = matrix[i][0];
@@ -58,7 +61,8 @@ int sdlMatrix(int **matrix, int rows, int cols){
   return count;
 }
 
-int sdlMatrix1(int (*matrix)[MAX_SIZE], int rows, int cols){
+int sdlMatrix1(int (*matrix)[MAX_SIZE], int rows, int cols)
+{
   int count = 0;
   for (int i = 0; i < rows; ++i) {
     int min_row = matrix[i][0];
@@ -85,7 +89,8 @@ int sdlMatrix1(int (*matrix)[MAX_SIZE], int rows, int cols){
   return count;
 }
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
   if (argc < 4) {
     std::cerr << "Not enough arguments\n";
     return 1;
