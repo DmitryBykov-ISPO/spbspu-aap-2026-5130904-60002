@@ -4,7 +4,8 @@
 #include <iostream>
 #include <string>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
   if (argc != 4 || (std::strcmp(argv[1], "1") && std::strcmp(argv[1], "2"))) {
     std::cerr << "Invalid args\n";
     return 1;
