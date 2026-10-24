@@ -103,7 +103,7 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 	const char* const arr = argv[2];
-	
+
 	std::ifstream input(argv[2]);
 	if (!input) {
 		std::cerr << "ERROR: can not open file\n";
@@ -126,7 +126,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	const int size = 100;
-	
+
 	if (num == 1) {
 		int arr[size][size] = {};
 		if (rows > size || cols > size) {
@@ -139,7 +139,7 @@ int main(int argc, char* argv[]) {
 				if (!(input >> x)) {
 					std::cerr << "ERROR: invalid_argument\n";
 					return 2;
-				} 
+				}
 				arr[i][j] = x;
 			}
 		}
