@@ -56,7 +56,7 @@ int sdlMatrix(int **matrix, int rows, int cols) {
   return count;
 }
 
-int sdlMatrix1(int (*matrix)[100], int rows, int cols) {
+int sdlMatrix1(int (*matrix)[size], int rows, int cols) {
   int count = 0;
   for (int i = 0; i < rows; ++i) {
     int min_row = matrix[i][0];
@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
     std::cerr << "First parameter is not a number\n";
     return 1;
   }
-  int num = std::stoi(argv[1]);
+  const int num = std::stoi(argv[1]);
   if (num < 1 || num > 2) {
     std::cerr << "First parameter is out of range\n";
     return 1;
@@ -108,8 +108,8 @@ int main(int argc, char *argv[]) {
     return 2;
   }
   int result = 0;
-  int rows;
-  int cols;
+  int rows = 0;
+  int cols = 0;
   if (!(input >> rows)) {
     std::cerr << "ERROR: invalid_argument\n";
     return 2;
@@ -118,7 +118,12 @@ int main(int argc, char *argv[]) {
     std::cerr << "ERROR: invalid_argument\n";
     return 2;
   }
-  if (rows <= 0 || cols <= 0) {
+  if (rows == 0 || cols == 0) {
+    std::ofstream output(argv[3]);
+    output << 0;
+    return 0;
+  }
+  else if (rows < 0 || cols < 0) {
     std::cerr << "ERROR: wrong size\n";
     return 2;
   }
@@ -131,7 +136,7 @@ int main(int argc, char *argv[]) {
       std::cerr << "ERROR: too large matrix";
       return 2;
     }
-    int x;
+    int x = 0;
     for (int i = 0; i < rows; ++i) {
       for (int j = 0; j < cols; ++j) {
         if (!(input >> x)) {
@@ -144,8 +149,8 @@ int main(int argc, char *argv[]) {
     result = sdlMatrix1(arr, rows, cols);
   }
   if (num == 2) {
-    int **arr = allocateMatrix(rows, cols);
-    int x;
+    int ** const arr = allocateMatrix(rows, cols);
+    int x = 0;
     for (int i = 0; i < rows; ++i) {
       for (int j = 0; j < cols; ++j) {
         if (!(input >> x)) {
