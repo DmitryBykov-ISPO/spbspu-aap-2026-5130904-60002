@@ -161,7 +161,7 @@ int main(int argc, char* argv[])
     return error_code;
   }
 
-  if (rows <= 0 cols <= 0) {
+  if (rows <= 0 || cols <= 0) {
     std::cerr << "ERROR: invalid argument\n";
     return error_code;
   }
