@@ -1,10 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdexcept>
 
 const int max_size = 100;
 
-void LFT_BOT_CLK(int matrix[][max_size], int rows, int cols)
+void lftBotClk(int matrix[][max_size], int rows, int cols)
 {
   int change = 1;
 
@@ -48,7 +49,7 @@ void LFT_BOT_CLK(int matrix[][max_size], int rows, int cols)
     bottom--;
   }
 }
-void LFT_BOT_CLK(int** matrix, int rows, int cols)
+void lftBotClk(int** matrix, int rows, int cols)
 {
   int change = 1;
 
@@ -93,12 +94,12 @@ void LFT_BOT_CLK(int** matrix, int rows, int cols)
   }
 }
 
-int** allocate_matrix(int rows, int cols)
+int** allocateMatrix(int rows, int cols)
 {
-  if (rows <= 0 || cols <= 0) {
+  if (rows <= 0 cols <= 0) {
     throw std::invalid_argument("Matrix size <=0");
   }
-  int** matrix = new int*[rows]{};
+  int** const matrix = new int*[rows]{};
 
   try {
     for (int i = 0; i < rows; ++i) {
@@ -151,7 +152,8 @@ int main(int argc, char* argv[])
     return 1;
   }
 
-  int rows, cols;
+  int rows = 0;
+  int cols = 0;
   if (!(input_file >> rows)) {
     std::cerr << "ERROR: invalid argument\n";
     return error_code;
@@ -161,7 +163,7 @@ int main(int argc, char* argv[])
     return error_code;
   }
 
-  if (rows <= 0 || cols <= 0) {
+  if (rows <= 0 cols <= 0) {
     std::cerr << "ERROR: invalid argument\n";
     return error_code;
   }
@@ -183,7 +185,7 @@ int main(int argc, char* argv[])
         }
       }
     }
-    LFT_BOT_CLK(matrix1, rows, cols);
+    lftBotClk(matrix1, rows, cols);
 
     out_file << rows << " " << cols << " ";
     for (int i = 0; i < rows; ++i) {
@@ -194,7 +196,7 @@ int main(int argc, char* argv[])
     break;
   }
   case 2: {
-    int** matrix2 = allocate_matrix(rows, cols);
+    int** const matrix2 = allocateMatrix(rows, cols);
     for (int i = 0; i < rows; ++i) {
       for (int j = 0; j < cols; ++j) {
         if (!(input_file >> matrix2[i][j])) {
@@ -204,7 +206,7 @@ int main(int argc, char* argv[])
         }
       }
     }
-    LFT_BOT_CLK(matrix2, rows, cols);
+    lftBotClk(matrix2, rows, cols);
     out_file << rows << " " << cols << " ";
     for (int i = 0; i < rows; ++i) {
       for (int j = 0; j < cols; ++j) {
