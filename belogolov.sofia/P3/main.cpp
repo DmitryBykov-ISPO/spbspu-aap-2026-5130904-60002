@@ -96,7 +96,7 @@ void lftBotClk(int** matrix, int rows, int cols)
 
 int** allocateMatrix(int rows, int cols)
 {
-  if (rows <= 0 cols <= 0) {
+  if (rows <= 0 || cols <= 0) {
     throw std::invalid_argument("Matrix size <=0");
   }
   int** const matrix = new int*[rows]{};
@@ -163,7 +163,7 @@ int main(int argc, char* argv[])
     return error_code;
   }
 
-  if (rows <= 0 cols <= 0) {
+  if (rows <= 0 || cols <= 0) {
     std::cerr << "ERROR: invalid argument\n";
     return error_code;
   }
