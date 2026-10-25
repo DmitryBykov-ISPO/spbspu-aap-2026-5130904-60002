@@ -56,7 +56,7 @@ namespace gorkova
           break;
         }
       }
-      if (!hasDuplicate)
+      if (!has_duplicate)
       {
         ++count;
       }
@@ -124,7 +124,7 @@ namespace gorkova
           break;
         }
       }
-      if (!hasDuplicate)
+      if (!has_duplicate)
       {
         ++count;
       }
