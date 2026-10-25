@@ -99,7 +99,7 @@ int** allocateMatrix(int rows, int cols)
   if (rows <= 0 || cols <= 0) {
     throw std::invalid_argument("Matrix size <=0");
   }
-  int** const matrix = new int*[rows]{};
+  int** const matrix = new int*[rows];
 
   try {
     for (int i = 0; i < rows; ++i) {
