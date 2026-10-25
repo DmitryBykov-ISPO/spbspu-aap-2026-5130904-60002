@@ -45,14 +45,14 @@ namespace gorkova
     int count = 0;
     for (int j = 0; j < cols; ++j)
     {
-      bool hasDuplicate = false;
+      bool has_duplicate = false;
       for (int i = 1; i < rows; ++i)
       {
-        int curr = matrix[i * cols + j];
-        int prev = matrix[(i - 1) * cols + j];
+        const int curr = matrix[i * cols + j];
+        const int prev = matrix[(i - 1) * cols + j];
         if (curr == prev)
         {
-          hasDuplicate = true;
+          has_duplicate = true;
           break;
         }
       }
@@ -65,7 +65,7 @@ namespace gorkova
   }
   int** allocateMatrix(int rows, int cols)
   {
-    int** m = new int*[rows]();
+    int** const m = new int*[rows]();
     try
     {
       for (int i = 0; i < rows; ++i)
@@ -115,12 +115,12 @@ namespace gorkova
     int count = 0;
     for (int j = 0; j < cols; ++j)
     {
-      bool hasDuplicate = false;
+      bool has_duplicate = false;
       for (int i = 1; i < rows; ++i)
       {
         if (matrix[i][j] == matrix[i - 1][j])
         {
-          hasDuplicate = true;
+          has_duplicate = true;
           break;
         }
       }
@@ -139,15 +139,15 @@ int main(int argc, char* argv[])
     std::cerr << "ERROR: invalid number of arguments" << '\n';
     return gorkova::argument_error;
   }
-  std::string mode = argv[1];
-  std::string inputFile = argv[2];
-  std::string outputFile = argv[3];
+  const std::string mode = argv[1];
+  const std::string input_file = argv[2];
+  const std::string output_file = argv[3];
   if ((mode != gorkova::stack_mode) && (mode != gorkova::heap_mode))
   {
     std::cerr << "First parameter is out of range" << '\n';
     return gorkova::argument_error;
   }
-  std::ifstream in(inputFile);
+  std::ifstream in(input_file);
   if (!in)
   {
     std::cerr << "Cannot open input file" << '\n';
@@ -160,7 +160,7 @@ int main(int argc, char* argv[])
     std::cerr << "Invalid sizes or matrix too large" << '\n';
     return gorkova::data_error;
   }
-  std::ofstream out(outputFile);
+  std::ofstream out(output_file);
   if (!out)
   {
     std::cerr << "Cannot open output file" << '\n';
@@ -206,3 +206,4 @@ int main(int argc, char* argv[])
   }
   return 0;
 }
+
