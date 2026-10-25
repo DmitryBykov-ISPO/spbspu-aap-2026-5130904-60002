@@ -115,7 +115,7 @@ int** allocateMatrix(int rows, int cols)
   return matrix;
 }
 
-void free_matrix(int** matrix, int rows)
+void freeMatrix(int** matrix, int rows)
 {
   for (int i = 0; i < rows; ++i) {
     delete[] matrix[i];
@@ -163,11 +163,14 @@ int main(int argc, char* argv[])
     return error_code;
   }
 
-  if (rows <= 0 || cols <= 0) {
+  if (rows < 0 || cols < 0) {
     std::cerr << "ERROR: invalid argument\n";
     return error_code;
   }
-
+  if (rows == 0 || cols == 0) {
+    out_file << "0 0";
+    return 0;
+  }
   switch (memory_var) {
   case 1: {
     int matrix1[max_size][max_size] = {};
@@ -201,7 +204,7 @@ int main(int argc, char* argv[])
       for (int j = 0; j < cols; ++j) {
         if (!(input_file >> matrix2[i][j])) {
           std::cerr << "ERROR: invalid argument\n";
-          free_matrix(matrix2, rows);
+          freeMatrix(matrix2, rows);
           return error_code;
         }
       }
@@ -213,7 +216,7 @@ int main(int argc, char* argv[])
         out_file << matrix2[i][j] << " ";
       }
     }
-    free_matrix(matrix2, rows);
+    freeMatrix(matrix2, rows);
     break;
   }
   default:
