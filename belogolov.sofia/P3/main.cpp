@@ -95,7 +95,7 @@ void LFT_BOT_CLK(int** matrix, int rows, int cols)
 
 int** allocate_matrix(int rows, int cols)
 {
-  if (rows <= 0 cols <= 0) {
+  if (rows <= 0 || cols <= 0) {
     throw std::invalid_argument("Matrix size <=0");
   }
   int** matrix = new int*[rows]{};
